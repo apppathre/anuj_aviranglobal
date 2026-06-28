@@ -11,16 +11,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Prepare SSH key
+        shell: bash
+        env:
+          RAW_SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          if printf '%s' "$RAW_SSH_KEY" | grep -q '\\n'; then
+            {
+              printf 'SSH_KEY<<EOF\n'
+              printf '%s\n' "$RAW_SSH_KEY" | sed 's/\\n/\n/g'
+              printf 'EOF\n'
+            } >> "$GITHUB_ENV"
+          else
+            {
+              printf 'SSH_KEY<<EOF\n'
+              printf '%s\n' "$RAW_SSH_KEY"
+              printf 'EOF\n'
+            } >> "$GITHUB_ENV"
+          fi
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
 
         with:
           host: ${{ vars.HOST }}
           username: ${{ vars.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script_stop: true
+          key: ${{ env.SSH_KEY }}
 
           script: |
+            set -e
             echo "Starting deployment..."
 
             cd ${{ vars.DEPLOY_PATH }}
