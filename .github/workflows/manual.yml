@@ -11,14 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Prepare SSH key
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s' "${{ secrets.SSH_KEY }}" \
+            | sed 's/\\n/\n/g' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
 
         with:
           host: ${{ vars.HOST }}
           username: ${{ vars.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script_stop: true
+          key_path: /home/runner/.ssh/deploy_key
 
           script: |
             echo "Starting deployment..."
