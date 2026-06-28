@@ -1,0 +1,53 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "slug": "how-to-evaluate-a-coffee-export-partner",
+      "title": "How to Evaluate a Coffee Export Partner",
+      "summary": "A practical checklist for quality checks, sample approval, pricing clarity, and shipment consistency when selecting a coffee supplier.",
+      "category": "Coffee",
+      "date": "2026-06-10",
+      "readTime": "6 min read",
+      "author": "AVIRAN GLOBAL Team",
+      "image": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1400&q=80",
+      "content": [
+        "Start with traceability. A reliable exporter should provide clear details on origin, lot separation, grading standards, and available processing methods.",
+        "Ask for representative samples and evaluate consistency across multiple batches. Confirm moisture control, bean defects, and roast profile support where relevant.",
+        "Review commercial terms carefully. Define packaging format, container plan, quality claims, and rejection criteria before confirming production.",
+        "A dependable export partner combines quality discipline with transparent communication from inquiry to dispatch."
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "cardamom-export-guide-for-bulk-buyers",
+      "title": "Cardamom Export Guide for Bulk Buyers",
+      "summary": "Understand cardamom grades, moisture management, and bulk packaging choices that protect quality during transit.",
+      "category": "Cardamom",
+      "date": "2026-05-28",
+      "readTime": "5 min read",
+      "author": "AVIRAN GLOBAL Team",
+      "image": "https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=1400&q=80",
+      "content": [
+        "Bulk buyers should align sourcing decisions with grade preferences, target market expectations, and packaging needs.",
+        "Moisture control is critical for aroma retention and shelf performance. Ensure supplier checks are documented before shipment.",
+        "Discuss packing format based on transit route and storage period. Proper packaging protects product quality and reduces handling loss."
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "global-market-trends-for-indian-export-products",
+      "title": "Global Market Trends for Indian Export Products",
+      "summary": "A snapshot of demand shifts across key regions for coffee, spices, handloom products, and dehydrated foods.",
+      "category": "Market Insights",
+      "date": "2026-05-16",
+      "readTime": "7 min read",
+      "author": "AVIRAN GLOBAL Team",
+      "image": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1400&q=80",
+      "content": [
+        "Buyers are prioritizing consistency, documentation quality, and flexible packaging over lowest price alone.",
+        "Demand for value-added formats is growing in multiple regions, especially where private-label channels are expanding.",
+        "Exporters who combine sourcing control with responsive communication are better positioned for long-term contracts."
+      ]
+    }
+  ]
+}
