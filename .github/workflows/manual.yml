@@ -9,15 +9,20 @@ jobs:
   deploy:
     name: Deploy Application
     runs-on: ubuntu-latest
+    env:
+      SSH_KEY_PATH: ${{ runner.temp }}/deploy_key
 
     steps:
       - name: Prepare SSH key
         shell: bash
         run: |
-          mkdir -p ~/.ssh
-          printf '%s' "${{ secrets.SSH_KEY }}" \
-            | sed 's/\\n/\n/g' > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
+          if printf '%s' "${{ secrets.SSH_KEY }}" | grep -q '\\n'; then
+            printf '%s' "${{ secrets.SSH_KEY }}" \
+              | sed 's/\\n/\n/g' > "$SSH_KEY_PATH"
+          else
+            printf '%s' "${{ secrets.SSH_KEY }}" > "$SSH_KEY_PATH"
+          fi
+          chmod 600 "$SSH_KEY_PATH"
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
@@ -25,7 +30,7 @@ jobs:
         with:
           host: ${{ vars.HOST }}
           username: ${{ vars.USERNAME }}
-          key_path: /home/runner/.ssh/deploy_key
+          key_path: ${{ env.SSH_KEY_PATH }}
 
           script: |
             echo "Starting deployment..."
