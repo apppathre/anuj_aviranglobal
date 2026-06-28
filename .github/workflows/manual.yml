@@ -1,0 +1,43 @@
+name: Deploy to MilesWeb
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.2
+
+        with:
+          host: ${{ vars.HOST }}
+          username: ${{ vars.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script_stop: true
+
+          script: |
+            echo "Starting deployment..."
+
+            cd ${{ vars.DEPLOY_PATH }}
+
+            git fetch origin
+
+            git reset --hard origin/main
+
+            if [ -f composer.json ]; then
+              composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+            fi
+
+            if [ -f spark ]; then
+              php spark migrate --all --force || true
+              php spark cache:clear || true
+            fi
+
+            chmod -R 755 .
+
+            echo "Deployment completed successfully."
