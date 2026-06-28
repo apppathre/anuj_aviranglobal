@@ -21,23 +21,25 @@ jobs:
           script_stop: true
 
           script: |
+            echo "======================================"
             echo "Starting deployment..."
+            echo "======================================"
 
-            cd ${{ vars.DEPLOY_PATH }}
+            cd "${{ vars.DEPLOY_PATH }}"
 
+            echo "Current Directory:"
+            pwd
+
+            echo "Fetching latest changes..."
             git fetch origin
 
+            echo "Deploying latest version..."
             git reset --hard origin/main
 
-            if [ -f composer.json ]; then
-              composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-            fi
+            echo "Setting file permissions..."
+            find . -type d -exec chmod 755 {} \;
+            find . -type f -exec chmod 644 {} \;
 
-            if [ -f spark ]; then
-              php spark migrate --all --force || true
-              php spark cache:clear || true
-            fi
-
-            chmod -R 755 .
-
-            echo "Deployment completed successfully."
+            echo "======================================"
+            echo "Deployment completed successfully!"
+            echo "======================================"
