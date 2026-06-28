@@ -13,33 +13,32 @@ jobs:
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
-
         with:
           host: ${{ vars.HOST }}
           username: ${{ vars.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          script_stop: true
-
+          command_timeout: 10m
           script: |
-            echo "======================================"
-            echo "Starting deployment..."
-            echo "======================================"
+            echo "=================================="
+            echo "Starting Deployment"
+            echo "=================================="
 
             cd "${{ vars.DEPLOY_PATH }}"
 
             echo "Current Directory:"
             pwd
 
+            echo "Current Branch:"
+            git branch
+
             echo "Fetching latest changes..."
             git fetch origin
 
-            echo "Deploying latest version..."
+            echo "Deploying latest code..."
             git reset --hard origin/main
 
-            echo "Setting file permissions..."
+            echo "Setting permissions..."
             find . -type d -exec chmod 755 {} \;
             find . -type f -exec chmod 644 {} \;
 
-            echo "======================================"
             echo "Deployment completed successfully!"
-            echo "======================================"
