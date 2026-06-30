@@ -567,13 +567,6 @@ main section {
   z-index: 2;
 }
 
-.region-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  margin-top: 18px;
-}
-
 .region-list span {
   text-align: center;
   padding: 10px;
