@@ -77,7 +77,9 @@ async function submitLead(payload) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return response.ok;
+
+    const result = await response.json().catch(() => ({}));
+    return response.ok && result.ok === true;
   } catch (error) {
     return false;
   }
