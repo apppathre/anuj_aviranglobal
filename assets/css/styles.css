@@ -998,6 +998,42 @@ textarea {
   gap: 0.45rem;
 }
 
+.hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(135deg, var(--navy-deep), #4c6f95);
+  color: #ffffff;
+  font-size: 1.25rem;
+  box-shadow: 0 12px 24px rgba(36, 50, 74, 0.18);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  margin-right: 0.6rem;
+  background: rgba(76, 111, 149, 0.12);
+  color: var(--navy-deep);
+  flex-shrink: 0;
+}
+
+.about-value-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-value-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(36, 50, 74, 0.12);
+}
+
 .contact-actions {
   margin: 6px 0 14px;
 }
